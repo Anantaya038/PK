@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,8 @@
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
     <title>PK</title>
 </head>
 <body>
@@ -25,14 +28,33 @@
                               </span>
                 </div>
               </div>
-    <div style="height: 200px; padding: 1px 0 0 0;">
+    <form id="frm">
+      <div style="height: 200px; padding: 1px 0 0 0;">
         <div class="card card--material">
           <div class="card__title card--material__title">Add Customer Name</div>
           <span>
-                <div class="input"><input class="text-input--material" placeholder="customer name" type="text" required></div>
+                <div class="input">
+                  <input class="text-input--material" placeholder="customer name" type="text" name="name" id="name" required>
+                </div>
                 <br />
-          <button class="button--large--cta" style="width: 95%; margin: 0 auto;">Submit</button>
+          <button class="button--large--cta" style="width: 95%; margin: 0 auto;" id="submit" value="submit">Submit</button>
         </div>
       </div>
+    </form>
+    <script>
+      $(document).ready(function(){
+        $("submit").click(function(){
+          $.ajax ({
+            url: "insert.php",
+            type: "post",
+            data: $("#frm").serialize(),
+            success: function(d){
+              alert(d);
+              $("#frm")[0].reset();
+            }
+    });
+  });
+});
+    </script>
 </body>
 </html>
