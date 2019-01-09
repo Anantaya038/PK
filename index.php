@@ -62,7 +62,7 @@ if ($result->num_rows > 0) {
           <button class="button--large--cta" style="width: 95%; margin: 0 auto;">Submit</button>
         
         <tr>
-          <td><?php  echo $row['name']?></td>
+          <td><?php echo $row['name']?></td>
         </tr>
         </div>
       </div>
