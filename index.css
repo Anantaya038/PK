@@ -9,10 +9,12 @@ body{
     width: 90%;
     font-size: 80px;
     padding: 0 0 8px;
+    margin: 10%;
 }
 .text-input text-input--material{
     width: 90vw;
     font-size: 80px;
+    margin: 10%;
 }
 
 .input{
