@@ -8,6 +8,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
+     
         echo $row['name'];
     }
 } else {
@@ -59,6 +60,10 @@ if ($result->num_rows > 0) {
                 <div class="input"><input class="text-input--material" placeholder="customer name" type="text" required></div>
                 <br />
           <button class="button--large--cta" style="width: 95%; margin: 0 auto;">Submit</button>
+        
+        <tr>
+          <td><?php  echo $row['name']?></td>
+        </tr>
         </div>
       </div>
 </body>
