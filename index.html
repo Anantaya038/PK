@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    
     <title>PK</title>
 </head>
 <body>
@@ -28,7 +29,7 @@
                               </span>
                 </div>
               </div>
-    <form id="frm">
+    <form id="frm" method="POST">
       <div style="height: 200px; padding: 1px 0 0 0;">
         <div class="card card--material">
           <div class="card__title card--material__title">Add Customer Name</div>
@@ -48,9 +49,12 @@
             url: "insert.php",
             type: "post",
             data: $("#frm").serialize(),
-            success: function(d){
-              alert(d);
-              $("#frm")[0].reset();
+            success: function(result){
+              if(result.status==1){
+                alert(result.message);
+              }else{
+                alert(result.message);
+              }
             }
     });
   });
