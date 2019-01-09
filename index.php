@@ -1,3 +1,20 @@
+<?php
+include "connect.php";
+// $query = "select * from pk_home where name";
+// $result = mysqli_query($con,$query);
+$sql = "SELECT * FROM pk_home";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo $row['name'];
+    }
+} else {
+    echo "0 results";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +22,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
     <title>PK</title>
 </head>
 <body>
+  <div class="container">
+    
+    <?php while($row=mysqli_fetch_array($result)){?>
+    <?php } ?>
+      <tr>
+        <td><?php echo $row['name']?></td>
+    </tr> 
+  </div>
         <div class="toolbar">
                 <div class="toolbar__left">
                 </div>
