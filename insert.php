@@ -26,7 +26,6 @@ if(isset($_POST['submit']))
 
     $sql= "INSERT INTO pk_home (name) VALUES ('".$name."')";
     if ($conn->query($sql) === TRUE) {
-        echo $sql;
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

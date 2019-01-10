@@ -10,7 +10,26 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-  
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#submit").click(function(){
+        $.ajax ({
+          url: "insert.php",
+          type: "post",
+          data: $("#frm").serialize(),
+          success: function(result){
+            if(result.status==1){
+              alert(result.message);
+            }else{
+              alert(result.message);
+            }
+          }
+  });
+});
+});
+  </script>
+
 
   <title>PK</title>
 </head>
@@ -31,7 +50,7 @@
       </span>
     </div>
   </div>
-  <form id="frm" method="post">
+  <form name="frm" method="post" action="insert.php">
     <div style="height: 200px; padding: 1px 0 0 0;">
       <div class="card card--material">
         <div class="card__title card--material__title">Add Customer Name</div>
@@ -57,24 +76,7 @@
       });
     });
   </script> -->
-  <!-- <script>
-      $(document).ready(function(){
-        $("#submit").click(function(){
-          $.ajax ({
-            url: "insert.php",
-            type: "post",
-            data: $("#frm").serialize(),
-            success: function(result){
-              if(result.status==1){
-                alert(result.message);
-              }else{
-                alert(result.message);
-              }
-            }
-    });
-  });
-});
-    </script> -->
+
 </body>
 
 </html>
