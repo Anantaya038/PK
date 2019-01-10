@@ -1,18 +1,19 @@
 <?php
 include "connect.php";
 
-// $sql = "SELECT * FROM pk_home";
-// $result = $conn->query($sql);
+$sql = "SELECT * FROM pk_home";
+$result = $conn->query($sql);
 
-// if ($result->num_rows > 0) {
-//     // output data of each row
-//     while($row = $result->fetch_assoc()) {
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
      
-//         echo $row['name'];
-//     }
-// } else {
-//     echo "0 results";
-// }
+        echo $row['name'];
+        echo json_encode($$row['name']);
+    }
+} else {
+    echo "0 results";
+}
 ?>
 
 <!DOCTYPE html>
