@@ -7,7 +7,7 @@
 if ($result->num_rows > 0) {
     // output data of each row
     $ar = array();
-    echo $ar;
+    // echo $ar;
     while($row = $result->fetch_assoc()) {
         // echo json_encode($row);
         // $ar = array();
