@@ -1,7 +1,8 @@
 <?php
     include "connect.php";
     
-	$sql = "SELECT * FROM pk_home where username='$_GET[username]'";
+    // $sql = "SELECT * FROM pk_home where username='$_GET[username]'";
+    $sql = "SELECT * FROM pk_home";
     $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -16,13 +17,13 @@ if ($result->num_rows > 0) {
         // $myObj->id = $row['name_id'];
         // $myObj->name = $row['name'];
         // $myJSON = json_encode($myObj);
-        $row['key'] = $_GET[username];
+        // $row['key'] = $_GET[username];
         array_push($ar,$row);
         // echo [$myJSON];
         // echo json_encode($ar);
     }
     echo json_encode($ar);
 } else {
-    echo "0 results";
+    // echo "0 results";
 }
 ?>

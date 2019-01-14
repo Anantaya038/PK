@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <form id="login-form" role="form" style="display: block;">
+        <div class="form-group">
+            <input type="text" name="usernameInput" id="usernameInput" placeholder="Username" value="">
+        </div>
+        <div class="form-group">
+            <input type="password" name="passwordInput" id="passwordInput" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login"
+                        value="Log In">
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        $(function () {
+            $("#login-submit").click(function () {
+                var usernameInput = $("#usernameInput").val();
+                var passwordInput = $("#passwordInput").val();
+                console.log(usernameInput);
+                console.log(passwordInput);
+                var urlGet = "http://mba.bkksol.com/PK/getJSON.php/" + usernameInput;
+                $.ajax({
+                    type: "GET",
+                    url: urlGet,
+                    dataType: "json",
+                    success: function (data) {
+                        
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data[i].password);
+                            if (data[i].password === $("#passwordInput").val()) {
+                                console.log(data);
+                                location.replace('index.html');
+
+                            }
+                        }
+                        // console.log(data);
+
+                    }
+                });
+            });
+        });
+        // $(document).ready(function () {
+
+        //     var url = "http://mba.bkksol.com/PK/getJSON.php/";
+        //     console.log("ready!");
+
+        //     $("#login-submit").click(function () {
+
+        //       $.get(url, function (data) {
+        //           console.log(data);
+
+
+        //         for (var i = 0; i < data.length; i++) {
+        //           console.log(data[i].name);
+        //           if (data[i].password === $("#passwordInput").val() && data[i].username === $("#usernameInput").val()) {
+        //           console.log(data);
+        //           alert('login success');
+
+        //           }
+        //         }
+        //       });
+
+
+        //     });
+
+
+
+        //   });
+    </script>
+</body>
+
+</html>
