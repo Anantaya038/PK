@@ -15,79 +15,86 @@
 </head>
 
 <body>
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">PK @HOME</div>
-    </ons-toolbar>
 
-    <ons-tabbar swipeable position="auto">
-      <ons-tab page="tab1.html" label="Login" icon="ion-home, material:md-home">
-      </ons-tab>
-      <ons-tab page="tab2.html" label="รายชื่อ" icon="md-settings" active-icon="md-face">
+        <ons-toolbar>
+          <div class="center">Login</div>
+        </ons-toolbar>
+    
+        <p>This is the first page.</p>
+        
+            <div style="text-align: center; margin-top: 30px;">
+              <ons-card>
+                <div style="text-align: center; margin-top: 30px;">
+                  <ons-input id="usernameInput" modifier="underbar" placeholder="Username" float></ons-input>
+                  <p style="margin-top: 30px;">
+    
+                    <ons-input type="password" id="passwordInput" modifier="underbar" placeholder="Password" float></ons-input>
+                    <div>
+                      <ons-button id="login-submit">Click</ons-button>
+                    </div>
+                    <ons-button id="push-button">Push page</ons-button>
 
-      </ons-tab>
-    </ons-tabbar>
-  </ons-page>
-
-  <template id="tab1.html">
-    <ons-page id="Tab1">
-      <div style="text-align: center; margin-top: 30px;">
-        <ons-card>
-          <div style="text-align: center; margin-top: 30px;">
-            <ons-input id="user" modifier="underbar" placeholder="Username" float></ons-input>
-            <p style="margin-top: 30px;">
-
-              <ons-input type="password" id="pass" modifier="underbar" placeholder="Password" float></ons-input>
-              <div>
-                <ons-button id="myBtn">Click</ons-button>
-              </div>
+  
+    
+   
+     
+ 
 
 
 
 
-              <!-- <p id="demo"></p> -->
+    <script>
+      // document.getElementById("myBtn").addEventListener("click", function () {
+      //   // document.getElementById("demo").innerHTML = "Hello World";
+      // });
+      // var nameContainer = document.getElementById('name');
+      // var btn = document.getElementById("myBtn");
 
-              <script>
-                document.getElementById("myBtn").addEventListener("click", function () {
-                  // document.getElementById("demo").innerHTML = "Hello World";
-                });
-                var nameContainer = document.getElementById('name');
-                var btn = document.getElementById("myBtn");
+      // btn.addEventListener("click", function () {
+      //   var ourRequest = new XMLHttpRequest();
+      //   ourRequest.open('GET', 'http://mba.bkksol.com/PK/getJSON.php?username=' + document.getElementById(
+      //     'user').value);
+      //   ourRequest.onload = function () {
+      //     var ourData = JSON.parse(ourRequest.responseText);
+      //     console.log(ourData[0]);
 
-                btn.addEventListener("click", function () {
-                  var ourRequest = new XMLHttpRequest();
-                  ourRequest.open('GET', 'http://mba.bkksol.com/PK/getJSON.php?username=' + document.getElementById(
-                    'user').value);
-                  ourRequest.onload = function () {
-                    var ourData = JSON.parse(ourRequest.responseText);
-                    console.log(ourData[0]);
+      //   };
+      //   ourRequest.send();
+      // });
+      $(function () {
+        $("#login-submit").click(function () {
+          var usernameInput = $("#usernameInput").val();
+          var passwordInput = $("#passwordInput").val();
+          var urlGet = "http://mba.bkksol.com/PK/getJSON.php/" + usernameInput;
+          $.ajax({
+            type: "GET",
+            url: urlGet,
+            dataType: "json",
+            success: function (data) {
 
-                  };
-                  ourRequest.send();
-                });
-              </script>
-            </p>
-          </div>
-        </ons-card>
-    </ons-page>
-  </template>
+              for (var i = 0; i < data.length; i++) {
+                if (data[i].password == $("#passwordInput").val()) {
+                  location.replace('namelist.html');
+                } 
+              }
 
-
-
-  <template id="tab2.html">
-    <ons-page id="Tab2">
-
-      <ons-list>
-        <ons-list-header>แสดงชื่อ</ons-list-header>
-        <ons-list-item></ons-list-item>
-
-
-    </ons-page>
-  </template>
+            }
+          });
+        });
+      });
+    </script>
   <script>
-    $(document).ready(function () {
-      $("#")
-    });
+    document.addEventListener('init', function(event) {
+  var page = event.target;
+
+  if (page.id === 'page1') {
+    page.querySelector('#push-button').onclick = function() {
+      document.querySelector('#myNavigator').pushPage('page2.html', {data: {title: 'Page 2'}});
+    };
+  } else if (page.id === 'page2') {
+    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+  }
+});
   </script>
 </body>
 

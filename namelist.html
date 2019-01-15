@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+        <ons-splitter>
+                <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+                  <ons-page>
+                    <ons-list>
+                      <ons-list-item onclick="fn.load('home.html')" tappable>
+                            <p>This is the second page.</p>
+                            <ons-list-header style="text-align: center;">แสดงชื่อ</ons-list-header>
+                            <div class="col-lg-10"style="text-align: center;">
+                                <br><br>
+                                
+                              <table border="3" style="text-align: center;">
+                                  <thead>
+                                    <tr>
+                                      <th wight="10%">ID</th>
+                                      <th wight="10%">Name</th>
+                                      <th wight="10%">Username</th>
+                                      <th wight="5%">Password</th>
+                                    </tr>
+                                  </thead>
+                                <tbody id="pinlist"></tbody>
+                                </table> 
+                              </div> 
+                      </ons-list-item>
+                      <ons-list-item onclick="fn.load('settings.html')" tappable>
+                        Settings
+                      </ons-list-item>
+                      <ons-list-item onclick="fn.load('about.html')" tappable>
+                        About
+                      </ons-list-item>
+                    </ons-list>
+                  </ons-page>
+                </ons-splitter-side>
+                <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+              </ons-splitter>
+              
+              <template id="home.html">
+                <ons-page>
+                  <ons-toolbar>
+                    <div class="left">
+                      <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                      </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                      Main
+                    </div>
+                  </ons-toolbar>
+                  <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+                    Swipe right to open the menu!
+                  </p>
+                </ons-page>
+              </template>
+              
+              <template id="settings.html">
+                <ons-page>
+                  <ons-toolbar>
+                    <div class="left">
+                      <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                      </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                      Settings
+                    </div>
+                  </ons-toolbar>
+                </ons-page>
+              </template>
+              
+              <template id="about.html">
+                <ons-page>
+                  <ons-toolbar>
+                    <div class="left">
+                      <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                      </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                      About
+                    </div>
+                  </ons-toolbar>
+                </ons-page>
+              </template>
+
+       
+          
+             
+    <script>
+           $(function () {
+    console.log('ready!')
+    $.ajax({
+
+        //CP1. Complete Ajax Code to GET ALL data 
+        url: 'http://mba.bkksol.com/PK/getJSON.php',
+        type: 'GET',
+        dataType:"json",
+        // success: (data)=>addNewRow(data),
+
+    })
+    .done(function (data) {
+        console.log(data);
+                addNewRow(data);
+        
+    });
+    function addNewRow(data) {
+            for (var i = 0; i < data.length; i++) {
+                var row = '<tr><td>'+data[i].name_id + '</td><td>' + data[i].name + 
+                '</td><td>' +data[i].username + '</td>"></td><td>' + data[i].password + '</td></tr>';
+                $('#pinlist').append(row);
+                
+            }
+        }
+
+});
+        // $(document).ready(function () {
+
+        //     var url = "http://mba.bkksol.com/PK/getJSON.php/";
+        //     console.log("ready!");
+
+        //     $("#login-submit").click(function () {
+
+        //       $.get(url, function (data) {
+        //           console.log(data);
+
+
+        //         for (var i = 0; i < data.length; i++) {
+        //           console.log(data[i].name);
+        //           if (data[i].password === $("#passwordInput").val() && data[i].username === $("#usernameInput").val()) {
+        //           console.log(data);
+        //           alert('login success');
+
+        //           }
+        //         }
+        //       });
+
+
+        //     });
+
+
+
+        //   });
+    </script>
+</body>
+</html>
