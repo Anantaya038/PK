@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css/index.css"> -->
+  <title>PK @HOME</title>
+  <style>
+    .page{
+    font-family: 'Kanit', sans-serif;
+    }
+    </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      
+      $("#btn1").click(function () {
+
+        $.ajax({
+          type: "POST",
+          url: "index.php",
+          cache: false,
+          data: "mode=" + $("#mode").val() + "&firstname=" + $("#firstname").val(),
+          success: function (msg) {
+            alert("Data Call : " + msg);
+            $("p").append(msg);
+          }
+        });
+
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+   
+        <p></p>
+        <input type=text name=fistname id=firstname>
+        <input type=text name=lastname id=lastname>
+        <input type=text name=mode id=mode value=create>
+        <input type="button" id="btn1" value="Call">
+ 
+
+
+  <!-- <ons-page>
+    <div class="toolbar">
+      <div class="toolbar__center">Navigation Bar</div>
+    </div>
+    <ons-card style="height:98%;">
+
+
+      <div style="margin-top: 15vh; text-align: center;">
+        <ons-input id="username" modifier="underbar" placeholder="Username" style="width: 95%;" float></ons-input>
+        <ons-input id="password" modifier="underbar" type="password" placeholder="Password" style="width: 95%; margin-top: 30px;"
+          float></ons-input>
+      </div>
+      <p style="margin-top: 30px;">
+        <button class="button--large--cta" style="width: 95%; margin: 0 auto;">Button</button>
+      </p>
+      </div>
+    </ons-card>
+  </ons-page> -->
+
+
+  <!-- <template id="tab1.html">
+<ons-page id="Tab1">
+<div style="text-align: center; margin-top: 30px;">
+<ons-card>
+<div style="text-align: center; margin-top: 30px;">
+    <p>
+    <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+    </p>
+    <p>
+    <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+    </p>
+    <p style="margin-top: 30px;">
+    <ons-button onclick="login()">Sign in</ons-button>
+    </p>
+</div>
+</ons-card>
+</div>
+</ons-page>
+</template> -->
+
+
+
+
+
+
+</body>
+
+
+</html>
