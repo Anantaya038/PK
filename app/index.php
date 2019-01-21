@@ -1,6 +1,25 @@
 <?PHP 
 include ("connect.php");
 
+session_start();
+if(isset($_POST['login'])){
+ $user=$_POST['username'];
+ $pass=$_POST['password'];
+ $sql = "select * from users_pk where username='$user' and password='$pass'";
+//  echo $sql;
+ $select_data=mysqli_query($conn,$sql);
+ $fetch = $select_data->fetch_assoc();
+//  var_dump(json_encode($fetch));
+//  echo json_encode($select_data);
+ if($fetch) {
+  $_SESSION['username']=$row['username'];
+  echo "success";
+ }else{
+  echo "fail";
+ }
+ exit();
+}
+
 if ($_GET[mode] == "read") { 
 	$sql = "select * from users_pk where username like '$_GET[username]' and password like '$_GET[password]'";
 	// $sql = "select firstname, lastname, user_id from user_pk where    password like '$_GET[password]'";
@@ -81,6 +100,4 @@ if ($_GET[mode] == "delete") {
     }
 
 }
-
-
 ?> 
