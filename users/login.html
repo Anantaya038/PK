@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <ons-page>
+    <div class="toolbar">
+      <div class="toolbar__center">PK @HOME</div>
+    </div>
+    <ons-card style="height:98%;">
+      <div style="margin-top: 15vh; text-align: center;">
+        <ons-input id="usernameInput" modifier="underbar" placeholder="Username" style="width: 95%;" float></ons-input>
+        <ons-input id="passwordInput" modifier="underbar" type="password" placeholder="Password" style="width: 95%; margin-top: 30px;"
+          float></ons-input>
+      </div>
+      <p style="margin-top: 30px;">
+        <ons-button class="button--large--cta" id="login" style="width: 95%; margin: 0 auto;">Button</ons-button>
+      </p>
+      </div>
+    </ons-card>
+  </ons-page>
+  <script>
+    $(document).ready(function () {
+      $("#login").click(function () {
+        var usernameInput = $("#usernameInput").val();
+        var passwordInput = $("#passwordInput").val();
+        if (usernameInput != "" && passwordInput != "") {
+          $.ajax({
+            type: 'post',
+            url: 'index.php',
+            data: {
+              login: "login",
+              username: usernameInput,
+              password: passwordInput
+            },
+            success: function (response) {
+              if (response == "success") {
+                ons.notification.toast('Login success', {
+                  timeout: 3000
+                }).then(function (login) {
+                  window.location.replace('home.html');
+                });
+              } else {
+                ons.notification.toast('Login fail',{timeout:2000 });
+                window.location.reload();
+              }
+            }
+          });
+        } else {
+          ons.notification.alert("Please Fill All The Details");
+        }
+        return false;
+      });
+    });
+  </script>
+</body>
+
+</html>
